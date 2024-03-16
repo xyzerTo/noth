@@ -1,6 +1,5 @@
 import random
 import os
-import subprocess
 
 class notObvs:
     global key
@@ -20,11 +19,11 @@ class notObvs:
         with open("...txt", "r") as tempRead:
             for i in tempRead.read():
                 tempWrite.write(i)
-        tempWrite.write('""")')
-        tempWrite.write(f"#{self.key}")
+        tempWrite.write(f'""",{self.key})\nd1.run()')
         os.remove("...txt")
 
-    def encode(self):   
+    def encode(self):  
+        print(self.FileN) 
         with open(self.FileN, "r") as file:
             for i in file.readlines():
                 for j in i:
@@ -39,23 +38,15 @@ class notObvs:
                         with open("...txt", "a") as tempWrite:
                             tempWrite.write(j)
         self.transfer()
-
-    def getKey(self):
-        with open(self.FileN,"r") as read:
-            x = read.read()
-            x = x[-1]
-            return int(x)
     
     def kill(self):
-        file_path = "...py"
-        if os.path.exists(file_path):
-            result = subprocess.run(["python", file_path], capture_output=True, text=True)
-            os.remove(file_path)
-        else:
-            print("Python file does not exist.")
+        os.remove("...py")
 
-    def decode(self,string):   
-        key = self.getKey()
+    def run(self):
+        os.system("python3 ...py")
+        self.kill()
+        
+    def decode(self,string,key):   
         tempWrite = open("...py","w")
         for i in string:
             if i != " " and i != "\n":
@@ -64,8 +55,6 @@ class notObvs:
                 tempWrite.write(strchr)
             else:
                 tempWrite.write(i)
-        
-        self.kill()
 
 
 
