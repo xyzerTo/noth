@@ -4,30 +4,36 @@ import subprocess
 
 class notObvs:
     global key
-    key = random.randint(1,9)
+    
 
-    def __init__(self,file,itself):
+    def __init__(self,file):
         self.file = file
-        self.itself = itself
+        with open("save.txt", "w") as f:
+            f.write(self.file)
+    
+        fileP = open("save.txt","r")
+        self.FileN = fileP.read()
+        self.key = random.randint(1,10)
+
 
     def transfer(self):
-        tempWrite = open("sample.py", "w")
-        tempWrite.write('from obfuscation import notObvs\nd1 = notObvs("sample.py","sample.py")\n\n')
+        tempWrite = open(self.FileN, "w")
+        tempWrite.write('from obfuscation import notObvs\nd1 = notObvs("sample.py")\n\n')
         tempWrite.write('d1.decode("""\n') 
         with open("...txt", "r") as tempRead:
             for i in tempRead.read():
                 tempWrite.write(i)
         tempWrite.write('""")')
-        tempWrite.write(f"#{key}")
+        tempWrite.write(f"#{self.key}")
         os.remove("...txt")
 
 
     def encode(self):   
-        with open(self.file, "r") as file:
+        with open(self.FileN, "r") as file:
             for i in file.readlines():
                 for j in i:
                     if j != " " and j != "\n":
-                        ordchr = ord(j)+key
+                        ordchr = ord(j)+self.key
                         if ordchr == 32:
                             ordchr+=1
                         strchr = chr(ordchr)
@@ -40,7 +46,7 @@ class notObvs:
 
 
     def getKey(self):
-        with open("sample.py","r") as read:
+        with open(self.FileN,"r") as read:
             x = read.read()
             x = x[-1]
             return int(x)
@@ -67,6 +73,14 @@ class notObvs:
                 tempWrite.write(i)
         
         self.kill()
+
+
+
+
+
+
+
+
 
 
 
