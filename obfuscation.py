@@ -5,16 +5,13 @@ import subprocess
 class notObvs:
     global key
     
-
     def __init__(self,file):
         self.file = file
         with open("save.txt", "w") as f:
             f.write(self.file)
-    
         fileP = open("save.txt","r")
         self.FileN = fileP.read()
         self.key = random.randint(1,10)
-
 
     def transfer(self):
         tempWrite = open(self.FileN, "w")
@@ -26,7 +23,6 @@ class notObvs:
         tempWrite.write('""")')
         tempWrite.write(f"#{self.key}")
         os.remove("...txt")
-
 
     def encode(self):   
         with open(self.FileN, "r") as file:
@@ -44,14 +40,12 @@ class notObvs:
                             tempWrite.write(j)
         self.transfer()
 
-
     def getKey(self):
         with open(self.FileN,"r") as read:
             x = read.read()
             x = x[-1]
             return int(x)
     
-
     def kill(self):
         file_path = "...py"
         if os.path.exists(file_path):
@@ -60,7 +54,6 @@ class notObvs:
         else:
             print("Python file does not exist.")
 
- 
     def decode(self,string):   
         key = self.getKey()
         tempWrite = open("...py","w")
