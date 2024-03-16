@@ -14,7 +14,7 @@ class notObvs:
 
     def transfer(self):
         tempWrite = open(self.FileN, "w")
-        tempWrite.write('from obfuscation import notObvs\nd1 = notObvs("sample.py")\n\n')
+        tempWrite.write(f'from obfuscation import notObvs\nd1 = notObvs("{self.FileN}")\n\n')
         tempWrite.write('d1.decode("""\n') 
         with open("...txt", "r") as tempRead:
             for i in tempRead.read():
