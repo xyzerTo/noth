@@ -21,8 +21,6 @@ class notObvs:
             for i in tempRead.read():
                 tempWrite.write(i)
         tempWrite.write(f'""",)\nd1.run()')
-
-
         os.remove("...txt")
 
 
