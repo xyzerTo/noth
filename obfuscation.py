@@ -5,12 +5,6 @@ global gen1
 gen1 = Gen()
 
 class notObvs:
-        
-    def __init__(self):
-        self.rule = gen1.id_generator()
-        self.key = gen1.alg(self.rule)
-        with open("save.txt","w") as x:
-            x.write(f"key:{self.rule}")
 
     def transfer(self,fileN):
         tempWrite = open(fileN, "w")
@@ -25,11 +19,16 @@ class notObvs:
 
 
     def encode(self,fileN): 
+        rule = gen1.id_generator()
+        key = gen1.alg(rule)
+        with open("save.txt","w") as x:
+            x.write(f"{fileN} key:{rule}")
+
         with open(fileN, "r") as file:
             for i in file.readlines():
                 for j in i:
                     if j != " " and j != "\n":
-                        ordchr = ord(j)+self.key
+                        ordchr = ord(j)+key
                         if ordchr == 32:
                             ordchr+=1
                         strchr = chr(ordchr)
@@ -61,4 +60,5 @@ class notObvs:
                 tempWrite.write(strchr)
             else:
                 tempWrite.write(i)
+
 
