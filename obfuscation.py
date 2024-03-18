@@ -6,27 +6,26 @@ gen1 = Gen()
 
 class notObvs:
         
-    def __init__(self,file):
-        self.file = file
+    def __init__(self):
         self.rule = gen1.id_generator()
         self.key = gen1.alg(self.rule)
         with open("save.txt","w") as x:
             x.write(f"key:{self.rule}")
 
-    def transfer(self):
-        tempWrite = open(self.file, "w")
-        tempWrite.write(f'from obfuscation import notObvs\nd1 = notObvs("{self.file}")\nd1.decode("""') 
+    def transfer(self,fileN):
+        tempWrite = open(fileN, "w")
+        tempWrite.write(f'from obfuscation import notObvs\nd1 = notObvs()\nd1.decode("""') 
         
         with open("...txt", "r") as tempRead:
             for i in tempRead.read():
                 tempWrite.write(i)
-        tempWrite.write(f'""",)\nd1.run()')
+        tempWrite.write(f'""")\nd1.run()')
         os.remove("...txt")
 
 
 
-    def encode(self): 
-        with open(self.file, "r") as file:
+    def encode(self,fileN): 
+        with open(fileN, "r") as file:
             for i in file.readlines():
                 for j in i:
                     if j != " " and j != "\n":
@@ -39,7 +38,7 @@ class notObvs:
                     else:
                         with open("...txt", "a") as tempWrite:
                             tempWrite.write(j)
-        self.transfer()
+        self.transfer(fileN)
 
     def run(self):
         os.system("python3 ...py") #change to "python ...py" if on windows
@@ -62,3 +61,4 @@ class notObvs:
                 tempWrite.write(strchr)
             else:
                 tempWrite.write(i)
+
