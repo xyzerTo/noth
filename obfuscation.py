@@ -8,6 +8,7 @@ gen1 = Gen()
 #d1.alg() uses that "rule" to get a number(key)
 
 # current cases: "txt", "py"
+
 class notObvs:
 
     def transfer(self,fileN,case):
@@ -15,22 +16,18 @@ class notObvs:
             tempWrite = open(fileN, "w")
             tempWrite.write(f'from obfuscation import notObvs\nd1 = notObvs()\nd1.decode("""') 
             with open("...txt", "r") as tempRead:
-                for i in tempRead.read(): #Gets all the contents from the temporary file
-                    tempWrite.write(i)    #writes and structures the content, in the main file based on the case
+                for char in tempRead.read(): #Gets all the contents from the temporary file
+                    tempWrite.write(char)    #writes and structures the content, in the main file based on the case
             tempWrite.write(f'""")\nd1.run()')
             os.remove("...txt")
 
         elif case == "txt":
             tempWriteT = open(fileN, "w")
             with open("...txt", "r") as tempRead:
-                for i in tempRead.read():
-                    tempWriteT.write(i)
-
-            os.remove("...txt")
+                for char in tempRead.read():
+                    tempWriteT.write(char)
+           os.remove("...txt")
     
-
-
-
     def encode(self,fileN,case): 
 
         rule = gen1.rule_generator()
@@ -65,13 +62,13 @@ class notObvs:
             if rule == "None":
                 rule = input("please enter a key: ")
             key = gen1.alg(rule)
-            for i in string:
-                if i != " " and i != "\n":
-                    ordchr = ord(i)-key
+            for char in string:
+                if char != " " and char != "\n":
+                    ordchr = ord(char)-key
                     strchr = chr(ordchr)
                     tempWrite.write(strchr)
                 else:
-                    tempWrite.write(i)
+                    tempWrite.write(char)
 
         if case == "txt":   
             if rule == "None":
