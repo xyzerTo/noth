@@ -26,7 +26,7 @@ class notObvs:
             with open("...txt", "r") as tempRead:
                 for char in tempRead.read():
                     tempWriteT.write(char)
-           os.remove("...txt")
+            os.remove("...txt")
     
     def encode(self,fileN,case): 
 
