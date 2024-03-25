@@ -1,5 +1,5 @@
 import os
-from Rules import Gen
+from rules import Gen
 
 global gen1
 gen1 = Gen()
@@ -30,7 +30,7 @@ class notObvs:
     
     def encode(self,fileN,case): 
 
-        rule = gen1.rule_generator()
+        rule = gen1.id_generator()
         key = gen1.alg(rule) 
         with open("save.txt","w") as x:
             x.write(f"{fileN} key:{rule}")
@@ -50,17 +50,16 @@ class notObvs:
                             tempWrite.write(char)
         self.transfer(fileN,case)
 
-
-
     def run(self):
         os.system("python3 ...py") #change to "python ...py" if on windows
         os.remove("...py")
 
     def decode(self,string,case="py",rule="None",):
+        #python case doesnt need the transfer method
         if case == "py":
-            tempWrite = open("...py","w")
             if rule == "None":
                 rule = input("please enter a key: ")
+            tempWrite = open("...py","w")
             key = gen1.alg(rule)
             for char in string:
                 if char != " " and char != "\n":
@@ -85,6 +84,3 @@ class notObvs:
                         else:
                             tempWrite.write(char)
             self.transfer(string,case="txt")
-
-
-
