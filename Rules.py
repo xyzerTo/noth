@@ -4,7 +4,7 @@ import random
 
 class Gen:
       
-     def id_generator(self,rule=False):
+     def id_generator(self):
             N = random.randint(4,15)
             x = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
               for i in range(N))
